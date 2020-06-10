@@ -11,5 +11,7 @@ This includes:
 * Logic Apps
 * Azure Functions
 * APIM
+* Event Hubs
+* Cosmos DB
 * Others
 
