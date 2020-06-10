@@ -1,0 +1,8 @@
+# Login
+az login
+
+# Set Subcription to use
+az account set --subscription
+
+# Run Deployment for a Resource Group using ARM
+az deployment sub create --location NorthEurope --template-file azuredeploy-rg.json --parameters azuredeploy-rg.parameters.dev.json

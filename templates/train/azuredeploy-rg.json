@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "type": "string",
+      "defaultValue": "MyEnvironment"
+    },
+    "projectName": {
+      "type": "string",
+      "defaultValue": "MyProjectName"
+    },
+    "rg-name": {
+      "type": "string"
+    },
+    "rg-location": {
+      "type": "string"
+    },
+    "resourceTags": {
+      "type": "object",
+      "defaultValue": {
+        "Environment": "[parameters('environment')]",
+        "ProjectName": "[parameters('projectName')]",
+        "CreationDate": "[utcNow()]"
+      }
+    }
+  },
+  "functions": [],
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2019-10-01",
+      "location": "[parameters('rg-location')]",
+      "name": "[parameters('rg-name')]",
+      "tags": "[parameters('resourceTags')]"     
+    }
+  ],
+  "outputs": {}
+}

@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": { 
+        "environment": {
+            "value": "Development"
+        },
+        "projectName": {
+            "value": "nmvr-labs-work-integration"
+        },
+        "rg-name": {
+            "value": "nmvr-labs-work-ne-rg-dev-shared-01"
+        },
+        "rg-location": {
+            "value": "North Europe"
+        }
+    }
+}
