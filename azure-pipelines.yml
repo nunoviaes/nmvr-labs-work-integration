@@ -18,7 +18,18 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: CopyFiles@2
+  name: 'CopyTemplateFilesToBuildArtifacts'
+  displayName: 'Copy Template Files To Build Artifacts'
+  inputs:
+    SourceFolder: 'templates'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/templates'
+    CleanTargetFolder: true
+
 - task: PublishBuildArtifacts@1
+  name: 'PublishBuildArtifacts'
+  displayName: 'Publish Build Artifacts'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
