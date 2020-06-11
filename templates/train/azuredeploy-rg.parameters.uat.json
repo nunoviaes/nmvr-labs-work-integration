@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": { 
         "tag-environment": {
-            "value": "Development"
+            "value": "UAT"
         },
         "tag-projectName": {
             "value": "nmvr-labs-work-integration"
         },
         "rg-name": {
-            "value": "nmvr-labs-work-int-ne-rg-dev-shared-01"
+            "value": "nmvr-labs-work-int-ne-rg-uat-shared-01"
         },
         "rg-location": {
             "value": "North Europe"

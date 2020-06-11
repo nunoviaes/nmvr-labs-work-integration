@@ -2,39 +2,112 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "environment": {
+    "tag-environment": {
       "type": "string",
-      "defaultValue": "MyEnvironment"
+      "metadata": {
+        "description": "Name of the environment for the tag object"
+      }
     },
-    "projectName": {
+    "tag-projectName": {
       "type": "string",
-      "defaultValue": "MyProjectName"
+      "metadata": {
+        "description": "Name of the project for the tag object"
+      }
     },
-    "rg-name": {
-      "type": "string"
-    },
-    "rg-location": {
-      "type": "string"
-    },
-    "resourceTags": {
+    "tag-resourceTags": {
       "type": "object",
       "defaultValue": {
-        "Environment": "[parameters('environment')]",
-        "ProjectName": "[parameters('projectName')]",
+        "Environment": "[parameters('tag-environment')]",
+        "ProjectName": "[parameters('tag-projectName')]",
         "CreationDate": "[utcNow()]"
+      }
+    },
+    "rg-name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the resource group to create"
+      }
+    },
+    "rg-location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location for the resource group to create"
+      }
+    },
+    "rg-principalId": {
+      "type": "string",
+      "defaultValue": "c751be49-7788-42fd-bd23-7e47c7d59083",
+      "metadata": {
+        "description": "The principal identifier of the user that will be given contributor access to the resourceGroup"
+      }
+    },
+    "rg-roleDefinitionId": {
+      "type": "string",
+      "defaultValue": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "metadata": {
+        "description": "The role definition to apply to the resourceGroup - default is Contributor or b24988ac-6180-42a0-ab88-20f7382dd24c"
+      }
+    },
+    "rg-roleAssignmentName": {
+      "type": "string",
+      "defaultValue": "[guid(deployment().name)]",
+      "metadata": {
+        "description": "The unique name for the role assignment in the format of a guid()"
       }
     }
   },
-  "functions": [],
-  "variables": {},
+  "functions": [
+  ],
+  "variables": {
+  },
   "resources": [
     {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2019-10-01",
-      "location": "[parameters('rg-location')]",
       "name": "[parameters('rg-name')]",
-      "tags": "[parameters('resourceTags')]"     
+      "location": "[parameters('rg-location')]",
+      "tags": "[parameters('tag-resourceTags')]",
+      "properties": {
+      }
+    }, 
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "applyLock",
+      "resourceGroup": "[parameters('rg-name')]",
+      "dependsOn": [
+        "[parameters('rg-name')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.Authorization/locks",
+              "apiVersion": "2016-09-01",
+              "name": "DontDelete",
+              "properties": {
+                "level": "CanNotDelete",
+                "notes": "Prevent deletion of the resourceGroup"
+              }
+            }, 
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2017-09-01",
+              "name": "[guid(parameters('rg-roleAssignmentName'))]",
+              "properties": {
+                "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', parameters('rg-roleDefinitionId'))]",
+                "principalId": "[parameters('rg-principalId')]",
+                "scope": "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('rg-name'))]"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
-  "outputs": {}
+  "outputs": {
+  }
 }
