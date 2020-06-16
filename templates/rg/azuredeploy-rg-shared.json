@@ -55,7 +55,7 @@
       "type": "string",
       "value": "[parameters('rg-name')]"
     },
-    "rg-name-location": {
+    "rg-location-output": {
       "type": "string",
       "value": "[parameters('rg-location')]"
     }
