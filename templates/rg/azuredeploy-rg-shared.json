@@ -5,13 +5,13 @@
     "tag-environment": {
       "type": "string",
       "metadata": {
-        "description": "Name of the environment for the tag object"
+        "description": "The name of the environment for the tag object."
       }
     },
     "tag-projectName": {
       "type": "string",
       "metadata": {
-        "description": "Name of the project for the tag object"
+        "description": "The name of the project for the tag object."
       }
     },
     "tag-resourceTags": {
@@ -20,18 +20,21 @@
         "Environment": "[parameters('tag-environment')]",
         "ProjectName": "[parameters('tag-projectName')]",
         "CreationDate": "[utcNow()]"
+      },
+      "metadata": {
+        "description": "The resource required tags."
       }
     },
     "rg-name": {
       "type": "string",
       "metadata": {
-        "description": "Name of the resource group to create"
+        "description": "The name of the resource group to create."
       }
     },
     "rg-location": {
       "type": "string",
       "metadata": {
-        "description": "Location for the resource group to create"
+        "description": "The location for the resource group to create."
       }
     }
   },
