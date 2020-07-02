@@ -51,13 +51,5 @@
     }
   ],
   "outputs": {
-    "rg-name-output": {
-      "type": "string",
-      "value": "[parameters('rg-name')]"
-    },
-    "rg-location-output": {
-      "type": "string",
-      "value": "[parameters('rg-location')]"
-    }
   }
 }
