@@ -8,10 +8,12 @@ This includes:
 
 * Service Bus
 * Event Grid
-* Logic Apps
-* Azure Functions
-* APIM
 * Event Hubs
+* Logic Apps
+* Logic Apps (Preview)
+* Azure Functions
+* API Management
 * Cosmos DB
+* SQL Database
 * Others
 
