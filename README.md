@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/nmvr-labs-work-org/nmvr-labs-work-integration/_apis/build/status/nunoviaes.nmvr-labs-work-integration?branchName=master)](https://dev.azure.com/nmvr-labs-work-org/nmvr-labs-work-integration/_build/latest?definitionId=4&branchName=master)
+[![Build Status](https://dev.azure.com/nmvr-labs-work-org/nmvr-labs-work-integration-templates/_apis/build/status/nmvr-labs-work-integration-templates-ci?branchName=master)](https://dev.azure.com/nmvr-labs-work-org/nmvr-labs-work-integration-templates/_build/latest?definitionId=6&branchName=master)
 
 # nmvr-labs-work-integration-templates
 
